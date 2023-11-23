@@ -3,6 +3,8 @@
 // GLUT includes
 #include <GL/glut.h>
 
+int zoom = 0;
+
 void key (unsigned char keyPressed, int x, int y) {
 	switch (keyPressed) {
 		case 'f':
@@ -30,7 +32,7 @@ void key (unsigned char keyPressed, int x, int y) {
 		// display_normals = !display_normals;
 		break;
 
-
+		/*
 		case '+': //Press + key to increase scale
 		// scale += 0.005;
 		break;
@@ -38,7 +40,7 @@ void key (unsigned char keyPressed, int x, int y) {
 		case '-': //Press - key to decrease scale
 		// scale -= 0.005;
 		break;
-
+		/**/
 		case 'd': //Press d key to translate on x positive
 		// translate[0] += 0.005;
 		break;
@@ -58,6 +60,16 @@ void key (unsigned char keyPressed, int x, int y) {
 		case '1': //Toggle loaded mesh display
 		// display_loaded_mesh = !display_loaded_mesh;
 		break;
+
+		case '+':
+			Context::camera.move(0, 0, +10/static_cast<float>(SCREENHEIGHT));
+			Context::refreshMatrices = true;
+			break;
+
+		case '-':
+			Context::camera.move(0, 0, -10/static_cast<float>(SCREENHEIGHT));
+			Context::refreshMatrices = true;
+			break;
 
 		default:
 		break;

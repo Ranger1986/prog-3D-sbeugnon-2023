@@ -1,6 +1,7 @@
 #include "SceneLoader.h"
 #include "Context.h"
 #include "Material.h"
+#include "Texture.h"
 // ASSIMP includes
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>           // Output data structure
@@ -74,8 +75,9 @@ Mesh* createMesh(aiMesh* mesh) {
 }
 
 Material* createMaterial(aiMaterial* material) {
+	Material* result = new Material();
 	// TODO: implement recovery of your scene's material into your material schema
-	return new Material();
+	return result;
 }
 
 void loadDataWithAssimp(const std::string& path) {

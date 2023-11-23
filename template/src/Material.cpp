@@ -1,6 +1,7 @@
 // Local includes
 #include "Material.h"
 #include "Shader.h"
+#include "Texture.h"
 // GLM includes
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -20,7 +21,7 @@ void Material::init() {
 	check();
 	// TODO : set initial parameters
 	m_color = {1.0, 1.0, 1.0, 1.0};
-	m_texture = 0;
+	m_texture =loadTexture2DFromFilePath("data/testure2.png");
 }
 
 void Material::clear() {

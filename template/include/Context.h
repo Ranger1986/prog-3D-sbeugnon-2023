@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Material.h"
-// #include "Texture.h"
+//#include "Texture.h"
 
 #include <glm/glm.hpp>
 
@@ -27,7 +27,7 @@ struct Context {
   static std::vector<Instance> instances;
   static std::vector<Mesh*> meshes;
   static std::vector<Material*> materials;
-  // std::vector<Texture*> textures;
+  //static std::vector<Texture*> textures;
 };
 
 void idle();

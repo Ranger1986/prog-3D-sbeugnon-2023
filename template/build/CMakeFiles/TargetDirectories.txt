@@ -1,0 +1,3 @@
+/home/pierre/Desktop/prog-3D-sbeugnon-2023/template/build/CMakeFiles/tp.dir
+/home/pierre/Desktop/prog-3D-sbeugnon-2023/template/build/CMakeFiles/edit_cache.dir
+/home/pierre/Desktop/prog-3D-sbeugnon-2023/template/build/CMakeFiles/rebuild_cache.dir
