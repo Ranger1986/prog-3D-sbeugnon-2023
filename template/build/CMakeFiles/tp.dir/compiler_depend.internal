@@ -1600,6 +1600,7 @@ CMakeFiles/tp.dir/src/Material.cpp.o
  /usr/include/c++/11/typeinfo
  /usr/include/c++/11/bits/nested_exception.h
  /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Shader.h
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Texture.h
 
 CMakeFiles/tp.dir/src/Mesh.cpp.o
  /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/src/Mesh.cpp

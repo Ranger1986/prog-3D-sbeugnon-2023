@@ -1595,7 +1595,8 @@ CMakeFiles/tp.dir/src/Material.cpp.o: ../src/Material.cpp \
   /usr/include/c++/11/bits/cxxabi_init_exception.h \
   /usr/include/c++/11/typeinfo \
   /usr/include/c++/11/bits/nested_exception.h \
-  ../include/Shader.h
+  ../include/Shader.h \
+  ../include/Texture.h
 
 CMakeFiles/tp.dir/src/Mesh.cpp.o: ../src/Mesh.cpp \
   /usr/include/stdc-predef.h \

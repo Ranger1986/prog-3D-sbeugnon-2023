@@ -21,7 +21,7 @@ void Material::init() {
 	check();
 	// TODO : set initial parameters
 	m_color = {1.0, 1.0, 1.0, 1.0};
-	m_texture =loadTexture2DFromFilePath("data/testure2.png");
+	m_texture =loadTexture2DFromFilePath("data/testure.jpg");
 }
 
 void Material::clear() {
@@ -40,9 +40,9 @@ void Material::internalBind() {
 	GLint color = getUniform("color");
 	glUniform4fv(color, 1, glm::value_ptr(m_color));
 	if (m_texture != -1) {
-		glBindTexture(GL_TEXTURE_2D, m_texture);
 		glActiveTexture(GL_TEXTURE0);
-		glUniform1i(getUniform("colorTexture"), GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, m_texture);
+		glUniform1i(getUniform("colorTexture"), 0);
 	}
 
 	// TODO : Add your custom parameters here

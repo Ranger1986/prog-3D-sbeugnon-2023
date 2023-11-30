@@ -29,8 +29,8 @@ void key (unsigned char keyPressed, int x, int y) {
 
 
 		case 'n': //Press n key to display normals
-		// display_normals = !display_normals;
-		break;
+			//display_normals = !display_normals;
+			break;
 
 		/*
 		case '+': //Press + key to increase scale
