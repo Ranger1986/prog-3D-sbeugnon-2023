@@ -7,10 +7,11 @@ out vec4 FragColor;
 
 uniform vec4 color;
 uniform sampler2D colorTexture;
+uniform sampler2D normalTexture;
 
 void main() {
     //FragColor = color;
-    FragColor = texture(colorTexture, o_uv0) * color;
+    FragColor = texture(colorTexture, o_uv0) *texture(normalTexture, o_uv0)* color;
     // DEBUG: position
     //FragColor = vec4(o_positionWorld, 1.0);
     // DEBUG: normal
