@@ -21,13 +21,16 @@ void Material::init() {
 	check();
 	// TODO : set initial parameters
 	m_color = {1.0, 1.0, 1.0, 1.0};
-	m_texture =loadTexture2DFromFilePath("data/testure.jpg");
-	m_normal_texture =loadTexture2DFromFilePath("data/testure2.png");
+	//Texture bois en niveau de gris
+	m_texture = loadTexture2DFromFilePath("data/TwoSidedPlane_BaseColor.png");
+	//Texure bois normal ?
+	m_normal_texture = loadTexture2DFromFilePath("data/TwoSidedPlane_Normal.png");
 }
 
 void Material::clear() {
 	// nothing to clear
 	// TODO: Add the texture or buffer you want to destroy for your material
+	//glDeleteTextures(1, &m_texture);
 }
 
 void Material::bind() {
@@ -50,7 +53,6 @@ void Material::internalBind() {
 		glBindTexture(GL_TEXTURE_2D, m_normal_texture);
 		glUniform1i(getUniform("normalTexture"), 1);
 	}
-
 	// TODO : Add your custom parameters here
 }
 

@@ -10,11 +10,13 @@ uniform mat4 view;
 uniform mat4 projection;
 //uniform mat4 mvp;
 //uniform mat4 modelView;
-//uniform mat4 normalMatrix;
+uniform mat4 normalMatrix;
 
 
 out vec3 o_positionWorld;
 out vec3 o_normalWorld;
+out vec3 o_tangentWorld;
+out vec3 o_bitangentWorld;
 out vec2 o_uv0;
 
 
@@ -24,6 +26,10 @@ void main() {
   o_uv0 = uv0;
   vec4 positionWorld = model * vec4(position, 1.0);
   o_positionWorld = positionWorld.xyz;
-  o_normalWorld = normalMatrix * normal;
+  
+  o_normalWorld = normalize(normalMatrix * normal);
+  o_tangentWorld = normalize(normalMatrix * tangent);
+  o_bitangentWorld = normalize(vec3(cross(o_normalWorld, o_tangentWorld)));
+
   gl_Position = projection * view * positionWorld;
 }
