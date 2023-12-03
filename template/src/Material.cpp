@@ -22,9 +22,9 @@ void Material::init() {
 	// TODO : set initial parameters
 	m_color = {1.0, 1.0, 1.0, 1.0};
 	//Texture bois en niveau de gris
-	m_texture = loadTexture2DFromFilePath("data/TwoSidedPlane_BaseColor.png");
+	m_texture = loadTexture2DFromFilePath("data/WaterBottle_baseColor.png");
 	//Texure bois normal ?
-	m_normal_texture = loadTexture2DFromFilePath("data/TwoSidedPlane_Normal.png");
+	m_normal_texture = loadTexture2DFromFilePath("data/WaterBottle_normal.png");
 }
 
 void Material::clear() {

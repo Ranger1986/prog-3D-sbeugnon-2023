@@ -22,7 +22,7 @@ void main() {
     vec3 rgb = texture(normalTexture, o_uv0).rgb;
     
     //tangente de la normal (normal map)
-    vec3 ntangent = rgb * 2.0 - 1.0;
+    vec3 ntangent = rgb * 0.5 + 0.5;
     
     //Matrice TBN
     mat3 TBN;
@@ -51,7 +51,7 @@ void main() {
     //specular
     float specularStrength = 1;
     vec3 viewDir = normalize(cameraPosition - o_positionWorld);
-    vec3 reflectDir = reflect(-lightDir, vec3(1.0,0.0,0.0));
+    vec3 reflectDir = reflect(-lightDir, norm);
     float spec = pow ( max ( dot ( viewDir , reflectDir ) , 0.0) , 1);
     vec3 specular = specularStrength * spec * lightColor ;
 

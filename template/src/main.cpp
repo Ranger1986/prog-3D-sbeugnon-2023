@@ -73,7 +73,7 @@ void beforeLoop() {
 
 void draw() {
 	if (Context::refreshMatrices) {
-		// Context::camera.refreshMatrices();
+		//Context::camera.refreshMatrices();
 		Context::camera.view = Context::camera.getViewMatrix();
 		Context::camera.projection = Context::camera.getProjectionMatrix();
 		Context::refreshMatrices = false;
