@@ -1596,7 +1596,17 @@ CMakeFiles/tp.dir/src/Material.cpp.o: ../src/Material.cpp \
   /usr/include/c++/11/typeinfo \
   /usr/include/c++/11/bits/nested_exception.h \
   ../include/Shader.h \
-  ../include/Texture.h
+  ../include/Texture.h \
+  ../include/Context.h \
+  ../include/Camera.h \
+  ../include/Trackball.h \
+  ../include/Mesh.h \
+  ../include/Material.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc
 
 CMakeFiles/tp.dir/src/Mesh.cpp.o: ../src/Mesh.cpp \
   /usr/include/stdc-predef.h \

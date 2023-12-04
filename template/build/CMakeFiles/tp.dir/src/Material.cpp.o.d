@@ -328,4 +328,13 @@ CMakeFiles/tp.dir/src/Material.cpp.o: \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/typeinfo /usr/include/c++/11/bits/nested_exception.h \
  /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Shader.h \
- /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Texture.h
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Texture.h \
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Context.h \
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Camera.h \
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Trackball.h \
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Mesh.h \
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Material.h \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc
