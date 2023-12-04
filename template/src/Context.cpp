@@ -18,7 +18,6 @@ GLuint Context::skyboxProgram;
 GLuint Context::skyboxTexture;
 GLuint Context::skyboxVAO;
 GLuint Context::skyboxVBO;
-RendererType Context::rendererType;
 std::vector<Instance> Context::instances;
 std::vector<Material*> Context::materials;
 std::vector<Mesh*> Context::meshes;
