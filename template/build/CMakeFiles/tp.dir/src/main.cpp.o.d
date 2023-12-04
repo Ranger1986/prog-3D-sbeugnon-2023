@@ -405,4 +405,5 @@ CMakeFiles/tp.dir/src/main.cpp.o: \
  /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Material.h \
  /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Mouse.h \
  /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/Keyboard.h \
- /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/SceneLoader.h
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/SceneLoader.h \
+ /home/pierre/Desktop/prog-3D-sbeugnon-2023/template/include/stb_image.h

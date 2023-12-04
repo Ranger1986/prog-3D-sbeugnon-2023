@@ -3785,7 +3785,8 @@ CMakeFiles/tp.dir/src/main.cpp.o: ../src/main.cpp \
   ../include/Material.h \
   ../include/Mouse.h \
   ../include/Keyboard.h \
-  ../include/SceneLoader.h
+  ../include/SceneLoader.h \
+  ../include/stb_image.h
 
 CMakeFiles/tp.dir/src/stb_image.cpp.o: ../src/stb_image.cpp \
   /usr/include/stdc-predef.h \

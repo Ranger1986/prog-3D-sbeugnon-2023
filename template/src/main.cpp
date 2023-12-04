@@ -25,6 +25,7 @@
 #include "Mouse.h"
 #include "Keyboard.h"
 #include "SceneLoader.h"
+#include "stb_image.h"
 
 
 
@@ -35,6 +36,86 @@
 
 static GLint window;
 
+void initSkybox()
+{
+	float skyboxVertices[] = {
+		// positions
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		-1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f
+	};
+	glGenVertexArrays(1, &Context::skyboxVAO);
+	glGenBuffers(1, &Context::skyboxVBO);
+	glBindVertexArray(Context::skyboxVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, Context::skyboxVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glBindVertexArray(0);
+}
+
+unsigned int loadCubemap(std::vector<std::string> faces){
+	unsigned int textureID;
+	glGenTextures (1, &textureID);
+	glBindTexture(GL_TEXTURE_CUBE_MAP , textureID);
+	int width , height , nrChannels;
+	for (unsigned int i = 0; i < faces.size(); i++) {
+	unsigned char *data = stbi_load(faces[i].c_str(), &width , &height , &
+	nrChannels , 0);
+	if (data) {
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+	0, GL_RGB , width , height , 0, GL_RGB , GL_UNSIGNED_BYTE ,
+	data);
+	} else {
+	std::cout << "Cubemap tex failed: " << faces[i] << std::endl;
+	}
+	stbi_image_free(data);
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP , GL_TEXTURE_MIN_FILTER , GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP , GL_TEXTURE_MAG_FILTER , GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP , GL_TEXTURE_WRAP_S , GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP , GL_TEXTURE_WRAP_T , GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP , GL_TEXTURE_WRAP_R , GL_CLAMP_TO_EDGE);
+	return textureID;
+}
 void init() {
 	// Context::camera.initPos();
 	Context::camera.resize(SCREENWIDTH, SCREENHEIGHT);
@@ -50,6 +131,21 @@ void init() {
 		fprintf(stderr, "Failed to initialize GLEW\n");
 		return;
 	}
+	Context::camera.resize(SCREENWIDTH, SCREENHEIGHT);
+	Context::skyboxProgram = load_shaders("shaders/skybox/vertex.glsl", "shaders/skybox/fragment.glsl");
+
+	// load skybox texture
+	std::vector<std::string> faces
+	{
+		"data/skybox/right.jpg",
+		"data/skybox/left.jpg",
+		"data/skybox/top.jpg",
+		"data/skybox/bottom.jpg",
+		"data/skybox/front.jpg",
+		"data/skybox/back.jpg"
+	};
+	Context::skyboxTexture = loadCubemap(faces);
+	initSkybox();
 }
 
 void beforeLoop() {
@@ -70,7 +166,6 @@ void beforeLoop() {
 
 }
 
-
 void draw() {
 	if (Context::refreshMatrices) {
 		//Context::camera.refreshMatrices();
@@ -80,6 +175,23 @@ void draw() {
 	}
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	//glDepthFunc(GL_LEQUAL);
+	glDepthMask(GL_FALSE);
+	// bind skybox
+	glUseProgram(Context::skyboxProgram);
+	glUniformMatrix4fv(glGetUniformLocation(Context::skyboxProgram, "projection"), 1, false, glm::value_ptr(Context::camera.projection));
+	glUniformMatrix4fv(glGetUniformLocation(Context::skyboxProgram, "view"), 1, false, glm::value_ptr(glm::mat4(glm::mat3(Context::camera.view))));
+
+	glBindVertexArray(Context::skyboxVAO);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, Context::skyboxProgram);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, Context::skyboxTexture);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glBindVertexArray(0);
+
+	glDepthMask(GL_TRUE);
+	//glDepthFunc(GL_LESS);
 
 	for (int i = 0; i < Context::instances.size(); ++i) {
 		Instance& inst = Context::instances[i];
