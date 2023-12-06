@@ -49,14 +49,8 @@ template/build$ make tp
 
 ### Par le script `run.sh`
 ```
-sh run.sh ./data/bunny.obj
+sh run.sh ./data/WaterBottle.gltf
 ```
 
-```
-./build/tp ./data/bunny.obj # utilise le modèle bunny.obj du dossier `data`
-./build/tp ./data/ToyCar.glb # utilise le modèle ToyCar.glb du dossier `data`
-./build/tp <anyformat> # ce que vous voulez comme format suppporté par Assimp
-```
-
-
+Source des modèles:
 https://github.com/KhronosGroup/glTF-Sample-Assets
